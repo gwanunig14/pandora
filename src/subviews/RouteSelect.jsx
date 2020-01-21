@@ -5,7 +5,7 @@ import "./RouteSelect.css";
 class RouteSelect extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { busroute: "", buses: props.buses };
+    this.state = { busroute: "", buses: props.buses, selectedRoute: null };
 
     this.onClick = this.onClick.bind(this);
   }
@@ -13,6 +13,11 @@ class RouteSelect extends React.Component {
   onClick(event) {
     event.preventDefault();
     this.props.selectRoute(event.target.outerText);
+    if (this.state.selectedRoute) {
+      this.state.selectedRoute.classList.remove("selectedRoute");
+    }
+    event.target.classList.add("selectedRoute");
+    this.setState({ selectedRoute: event.target });
   }
 
   render() {
@@ -23,17 +28,23 @@ class RouteSelect extends React.Component {
       <div className="listView">
         <h3 className="listHeader">Select Route</h3>
         <div className="scrollView">
-          <li value={"all"} onClick={this.onClick} className="busRoute">
+          <ul
+            value={"all"}
+            onClick={this.onClick}
+            className="busRoute"
+            tabindex="1"
+          >
             All
-          </li>
+          </ul>
           {busRoutes.map(busRoute => (
-            <li
+            <ul
               key={busRoute.route.toString()}
               onClick={this.onClick}
               className="busRoute"
+              tabindex="1"
             >
               {String(busRoute.route)}
-            </li>
+            </ul>
           ))}
         </div>
       </div>

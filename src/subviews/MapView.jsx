@@ -1,10 +1,6 @@
 import React from "react";
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
 
-const mapStyles = {
-  height: "100vh"
-};
-
 class MapView extends React.Component {
   constructor(props) {
     super(props);
@@ -48,7 +44,9 @@ class MapView extends React.Component {
       <Map
         google={this.props.google}
         zoom={10}
-        style={mapStyles}
+        style={{
+          height: "100vh"
+        }}
         initialCenter={{ lat: 33.749, lng: -84.388 }}
         onClick={this.onMapClicked}
       >

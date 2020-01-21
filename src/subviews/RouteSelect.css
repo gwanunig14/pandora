@@ -13,5 +13,12 @@
 }
 
 .busRoute {
-  height: 30px;
+  height: 40px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.selectedRoute {
+  background: lightskyblue;
 }
