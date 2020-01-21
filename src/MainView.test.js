@@ -1,5 +1,4 @@
 import React from "react";
-import { render } from "@testing-library/react";
 import { shallow } from "enzyme";
 import MainView from "./MainView";
 import { MartaResponse, MartaFilter } from "./Mocks/MartaMocks";

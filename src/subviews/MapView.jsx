@@ -1,11 +1,11 @@
 import React from "react";
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
 
-class MapView extends React.Component {
+export class MapView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedPlace: null,
+      selectedBus: null,
       activeMarker: null,
       showingInfoWindow: false
     };
@@ -23,14 +23,15 @@ class MapView extends React.Component {
     );
   }
 
-  onMarkerClick = (props, marker, e) =>
+  onMarkerClick = (props, marker, e) => {
     this.setState({
-      selectedPlace: props,
+      selectedBus: props,
       activeMarker: marker,
       showingInfoWindow: true
     });
+  };
 
-  onMapClicked = props => {
+  onMapClicked = () => {
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
@@ -62,9 +63,7 @@ class MapView extends React.Component {
           visible={this.state.showingInfoWindow}
         >
           <div>
-            <h1>
-              {this.state.selectedPlace ? this.state.selectedPlace.name : ""}
-            </h1>
+            <h4>{this.state.selectedBus ? this.state.selectedBus.name : ""}</h4>
           </div>
         </InfoWindow>
       </Map>
