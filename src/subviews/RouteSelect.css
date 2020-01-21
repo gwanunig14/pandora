@@ -1,0 +1,17 @@
+.listView {
+  width: 130px;
+  height: 100%;
+}
+
+.scrollView {
+  max-height: 92vh;
+  overflow-y: scroll;
+}
+
+.listHeader {
+  height: 3vh;
+}
+
+.busRoute {
+  height: 30px;
+}

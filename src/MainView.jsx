@@ -27,16 +27,17 @@ class MainView extends React.Component {
     }
   }
 
-  formatData(data) {
-    const formatedData = data.map(datum => {
+  formatData(unfilteredBusData) {
+    const filteredBusData = unfilteredBusData.map(unfilteredBusDatum => {
       return {
-        route: datum["ROUTE"],
-        lat: datum["LATITUDE"],
-        lon: datum["LONGITUDE"],
-        timepoint: datum["TIMEPOINT"]
+        route: unfilteredBusDatum["ROUTE"],
+        lat: unfilteredBusDatum["LATITUDE"],
+        lon: unfilteredBusDatum["LONGITUDE"],
+        timepoint: unfilteredBusDatum["TIMEPOINT"],
+        busNumber: unfilteredBusDatum["VEHICLE"]
       };
     });
-    this.setState({ allBuses: formatedData, selectedBuses: formatedData });
+    this.setState({ allBuses: filteredBusData, selectedBuses: filteredBusData });
   }
 
   selectRoute(route) {

@@ -1,10 +1,6 @@
 import React from "react";
 import _ from "lodash";
-
-const scrollStyles = {
-  height: "500px",
-  overflowY: "scroll"
-};
+import "./RouteSelect.css";
 
 class RouteSelect extends React.Component {
   constructor(props) {
@@ -24,17 +20,17 @@ class RouteSelect extends React.Component {
       return parseInt(bus.route, 10);
     });
     return (
-      <div style={{ width: "130px" }}>
-        <h3>Select Route</h3>
-        <div style={scrollStyles}>
-          <li value={"all"} onClick={this.onClick} style={{ height: "30px" }}>
+      <div className="listView">
+        <h3 className="listHeader">Select Route</h3>
+        <div className="scrollView">
+          <li value={"all"} onClick={this.onClick} className="busRoute">
             All
           </li>
           {busRoutes.map(busRoute => (
             <li
               key={busRoute.route.toString()}
               onClick={this.onClick}
-              style={{ height: "30px" }}
+              className="busRoute"
             >
               {String(busRoute.route)}
             </li>
