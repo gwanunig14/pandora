@@ -10,6 +10,16 @@ class RouteSelect extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
+  fetchBuses() {
+    if (!this.state.buses.length) {
+      fetch(
+        "http://developer.itsmarta.com/BRDRestService/RestBusRealTimeService/GetAllBus"
+      )
+        .then(res => res.json())
+        .then(json => this.props.formatBuses(json));
+    }
+  }
+
   onClick(event) {
     event.preventDefault();
     this.props.selectRoute(event.target.outerText);
@@ -21,9 +31,14 @@ class RouteSelect extends React.Component {
   }
 
   render() {
-    const busRoutes = _.sortBy(_.uniqBy(this.props.buses, "route"), bus => {
-      return parseInt(bus.route, 10);
-    });
+    let busRoutes = [];
+    if (this.props.buses.length) {
+      busRoutes = _.sortBy(_.uniqBy(this.props.buses, "route"), bus => {
+        return parseInt(bus.route, 10);
+      });
+    } else {
+      this.fetchBuses();
+    }
     return (
       <div className="listView">
         <h3 className="listHeader">Select Route</h3>

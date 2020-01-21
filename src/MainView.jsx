@@ -15,19 +15,10 @@ class MainView extends React.Component {
     this.state = { allBuses: [], selectedBuses: [] };
 
     this.selectRoute = this.selectRoute.bind(this);
+    this.formatBuses = this.formatBuses.bind(this);
   }
 
-  fetchBuses() {
-    if (!this.state.allBuses.length) {
-      fetch(
-        "http://developer.itsmarta.com/BRDRestService/RestBusRealTimeService/GetAllBus"
-      )
-        .then(res => res.json())
-        .then(json => this.formatData(json));
-    }
-  }
-
-  formatData(unfilteredBusData) {
+  formatBuses(unfilteredBusData) {
     const filteredBusData = unfilteredBusData.map(unfilteredBusDatum => {
       return {
         route: unfilteredBusDatum["ROUTE"],
@@ -37,7 +28,10 @@ class MainView extends React.Component {
         busNumber: unfilteredBusDatum["VEHICLE"]
       };
     });
-    this.setState({ allBuses: filteredBusData, selectedBuses: filteredBusData });
+    this.setState({
+      allBuses: filteredBusData,
+      selectedBuses: filteredBusData
+    });
   }
 
   selectRoute(route) {
@@ -50,12 +44,12 @@ class MainView extends React.Component {
   }
 
   render() {
-    this.fetchBuses();
     return (
       <div style={styles}>
         <FlexView hAlignContent="left">
           <RouteSelect
             selectRoute={this.selectRoute}
+            formatBuses={this.formatBuses}
             buses={this.state.allBuses}
           />
           <div>
