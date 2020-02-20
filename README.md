@@ -1,5 +1,15 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### IMPORTANT NOTE!!!
+If testing with Safari, there is a chance of getting this error in your terminal:
+Failed to load resource: Origin http://localhost:3000 is not allowed by Access-Control-Allow-Origin.
+
+If that happens,
+1. Open preferences
+2. Make sure that Show Develop menu in menu bar is checked at the bottom of the menu
+3. Click Develop in the top menu bar
+4. Click Disable Cross-Origin Restrictions (should be directly above WebRTC)
+
 ## Available Scripts
 
 In the project directory, you can run:
